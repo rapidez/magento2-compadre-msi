@@ -10,7 +10,7 @@ use Magento\InventorySalesApi\Api\AreProductsSalableInterface;
 use Rapidez\Compadre\Model\Config;
 use Rapidez\Compadre\Model\Resolver\Inventory\StockItem;
 use Magento\Catalog\Model\Product;
-use Magento\InventorySales\Model\IsProductSalableResult;
+use Magento\InventorySalesApi\Api\Data\IsProductSalableResultInterface;
 
 class StockItemPlugin
 {
@@ -36,7 +36,7 @@ class StockItemPlugin
         
         if ($this->config->isFieldExposed('in_stock')) {
             $qty = $this->areProductSalable->execute([$product->getSku()], $scopeId);
-            /** @var IsProductSalableResult $result */
+            /** @var IsProductSalableResultInterface $result */
             $result = array_shift($qty);
             $stockItem['in_stock'] = $result->isSalable();
         }
