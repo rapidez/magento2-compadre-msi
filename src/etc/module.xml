@@ -4,6 +4,7 @@
     <module name="Rapidez_Compadre_Msi" setup_version="0.0.1">
         <sequence>
             <module name="Magento_InventorySalesApi"/>
+            <module name="Rapidez_Compadre"/>
         </sequence>
     </module>
 </config>
