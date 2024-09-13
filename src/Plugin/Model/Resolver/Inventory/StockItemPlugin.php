@@ -4,19 +4,19 @@ namespace Rapidez\CompadreMsi\Plugin\Model\Resolver\Inventory;
 
 use Magento\Framework\GraphQl\Config\Element\Field;
 use Magento\Framework\GraphQl\Schema\Type\ResolveInfo;
-use Magento\InventorySales\Model\GetProductSalableQty;
-use Magento\InventorySales\Model\ResourceModel\GetAssignedStockIdForWebsite;
+use Magento\InventorySalesApi\Api\GetProductSalableQtyInterface;
+use Magento\InventorySalesApi\Model\GetAssignedStockIdForWebsiteInterface;
 use Magento\InventorySalesApi\Api\AreProductsSalableInterface;
 use Rapidez\Compadre\Model\Config;
 use Rapidez\Compadre\Model\Resolver\Inventory\StockItem;
 use Magento\Catalog\Model\Product;
-use Magento\InventorySales\Model\IsProductSalableResult;
+use Magento\InventorySalesApi\Api\Data\IsProductSalableResultInterface;
 
 class StockItemPlugin
 {
     public function __construct(
-        private GetAssignedStockIdForWebsite $getAssignedStockIdForWebsite,
-        private GetProductSalableQty $getProductSalableQty,
+        private GetAssignedStockIdForWebsiteInterface $getAssignedStockIdForWebsite,
+        private GetProductSalableQtyInterface $getProductSalableQty,
         private AreProductsSalableInterface $areProductSalable,
         private Config $config,
     ) {}
@@ -36,7 +36,7 @@ class StockItemPlugin
         
         if ($this->config->isFieldExposed('in_stock')) {
             $qty = $this->areProductSalable->execute([$product->getSku()], $scopeId);
-            /** @var IsProductSalableResult $result */
+            /** @var IsProductSalableResultInterface $result */
             $result = array_shift($qty);
             $stockItem['in_stock'] = $result->isSalable();
         }
