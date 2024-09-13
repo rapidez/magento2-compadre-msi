@@ -10,7 +10,7 @@
     "require": {
         "php": "^8.0.2|^8.1",
         "magento/framework": "*",
-        "magento/module-inventory-api": "*",
+        "magento/module-inventory-sales-api": "*",
         "rapidez/magento2-compadre": "*"
     },
     "require-dev": {
