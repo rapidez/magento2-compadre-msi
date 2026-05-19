@@ -21,7 +21,7 @@ class StockItemPlugin
         private Config $config,
     ) {}
 
-    public function aroundResolve(StockItem $subject, callable $proceed, Field $field, $context, ResolveInfo $info, array $value = null, array $args = null): array
+    public function aroundResolve(StockItem $subject, callable $proceed, Field $field, $context, ResolveInfo $info, ?array $value = null, ?array $args = null): array
     {
         $stockItem = $proceed($field, $context, $info, $value, $args);
         
